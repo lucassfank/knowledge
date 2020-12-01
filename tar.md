@@ -7,7 +7,7 @@ O [GNU Tar](https://www.gnu.org/software/tar/), ou simplesmente **tar**, é um p
 
 ## Palma, palma, não priemos cânico!
 
-Seguindo as sabia palavras do Chapolin, nem tudo está perdido. *Au contraire*, ele pode ser a salvação  em diversas situações, por oferecer um vasto número de recursos e possíveis aplicações. (The guidance of the morning star will lead the way into the ~~void~~ linux)
+Seguindo as sábias palavras do Chapolin, nem tudo está perdido. *Au contraire*, ele pode ser a salvação  em diversas situações, por oferecer um vasto número de recursos e possíveis aplicações. (The guidance of the morning star will lead the way into the ~~void~~ linux)
 
 # 
 

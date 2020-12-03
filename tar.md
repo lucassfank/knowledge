@@ -11,4 +11,4 @@ Seguindo as sábias palavras do Chapolin, nem tudo está perdido. *Au contraire*
 
 # 
 
-[GNU TAR Manual](https://linuxcommand.org/lc3_man_pages/tar1.html)
+[Manual TAR resumido](https://linuxcommand.org/lc3_man_pages/tar1.html) ou o [GNU TAR Manual](http://www.gnu.org/software/tar/manual/)

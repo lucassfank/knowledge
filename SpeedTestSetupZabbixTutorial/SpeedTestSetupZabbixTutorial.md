@@ -1,5 +1,7 @@
 # Velocidade da Internet com SpeedTest no Linux + Configuração para monitoramento pelo Zabbix <a name="introduction"></a>
 
+![image](https://github.com/lucassfank/knowledge/blob/main/SpeedTestSetupZabbixTutorial/img/0-Banner.png)
+
 Os planos e pacotes Internet vendidos pelos provedores aumentam em um ritmo que busca manter o alinhamento com a demanda dos serviços e usuários, que sobe cada dia mais. Além de usar os dados contratados, é importante monitorar se o plano contratado está sendo fornecido dentro das definições do contrato e da legislação que concerne estas definições. A análise dos serviços oferecidos pelos provedores é ainda mais importantes em um ambiente empresarial, que em sua maioria possui um Acordo de Nível de Serviço (SLA, do acrônimo em Inglês *Service Level Agreement*) atrelado ao contrato para ter uma segurança a mais sobre o servio contratado. 
 
 Atualmente existem diversos sites e ferramentas para fazer a verificação de diversas métricas e indicadores de desempenho da rede. Qualquer usuário consegue pesquisar e encontrar um teste que em um clique apresenta o resultado de maneira gráfica e textual no seu dispositivo, como o [SpeedTest](https://www.speedtest.net). Inclusive alguns serviços incluem um teste na sua aplicação, se esse for um fator crítico para uma boa experiência, por exemplo o [Fast da Netflix](https://fast.com/pt/). Porém existem cenários em que é preciso manter registro destas medições, em um banco de dados ou em *logs*, e possívelmente gerar gráficos a partir destes dados. nestas situações é preciso que esses testes sejam executados e os seus resultados sejam exportados de maneira a manter estes registros.
@@ -338,6 +340,8 @@ Na interface Web do seu servidor Zabbix, com acesso a privilégios administrativ
 
 As demais abas são opcionar, se você criar um template desta e outras configurações, você pode selecionar ele na aba Templates, ou qualquer outra configuração, terminando de preencher os campos clique em Adicionar.
 
+![image](https://github.com/lucassfank/knowledge/blob/main/SpeedTestSetupZabbixTutorial/img/1-Host.jpg)
+
 #### Itens <a name="itens"></a>
 
 Com o host criado, é necessario configurar os itens, para coletar os dados, para isso acesse o **Configurações > Hosts > Nome do host > Itens > Criar item** e nos campos apresentados preencha os seguintes, também veja o exemplo na imagem abaixo.
@@ -364,6 +368,8 @@ Com o host criado, é necessario configurar os itens, para coletar os dados, par
 
 * **Ativo (Enabled)**: Define se ele irá capturar estes dados ou não.
 
+![image](https://github.com/lucassfank/knowledge/blob/main/SpeedTestSetupZabbixTutorial/img/2-Item.jpg)
+
 #### Triggers <a name="triggers"></a>
 
 Caso queira configurar um trigeer para avisar quando um dos itens não tem resultado satisfatório, acesse o **Configurações > Hosts > Nome do host > Triggers > Criar trigger** e nos campos apresentados preencha os seguintes campos, e veja o exemplo na imagem abaixo.
@@ -386,10 +392,20 @@ Caso queira configurar um trigeer para avisar quando um dos itens não tem resul
 
 * **Ativo (Enabled)**: Define se ele irá operar ou não.
 
+![image](https://github.com/lucassfank/knowledge/blob/main/SpeedTestSetupZabbixTutorial/img/3-Trigger.jpg)
+
 ### Monitorar os gráficos dos resultados no Zabbix <a name="monitor"></a>
 
-Na interface Web do seu servidor Zabbix acesse **Monitoramento > Dados recentes** e filtre pelos itens recém configurados. Se você definiu o Campo **Aplicações** nos seus itens, você pode preencher o campo **Nome** com o que foi definido no item, neste caso **SpeedTest**, depois clicar em **Aplicar**. Dessa forma serão exibidos os dados de destas coletas, como mostra a imagem a seguir, para ver os gráficos clique em **Gráficos** no final da linha dos itens que deseja visualizar e veja um exemplo na imagem abaixo. Note que será necessário o Zabbix ter coletado pelo menos um valor para começar a exibir este gráfico.
+Na interface Web do seu servidor Zabbix acesse **Monitoramento > Dados recentes** e filtre pelos itens recém configurados. Se você definiu o Campo **Aplicações** nos seus itens, você pode preencher o campo **Nome** com o que foi definido no item, neste caso **SpeedTest**, depois clicar em **Aplicar**. Dessa forma serão exibidos os dados de destas coletas, como mostra a imagem a seguir.
+
+![image](https://github.com/lucassfank/knowledge/blob/main/SpeedTestSetupZabbixTutorial/img/4-RecentData.jpg)
+
+Para ver os gráficos clique em **Gráficos** no final da linha dos itens que deseja visualizar e veja um exemplo na imagem abaixo. Note que será necessário o Zabbix ter coletado pelo menos um valor para começar a exibir este gráfico.
+
+![image](https://github.com/lucassfank/knowledge/blob/main/SpeedTestSetupZabbixTutorial/img/5-Graphs.jpg)
 
 ## Considerações finais <a name="end"></a>
 
 Pronto :grinning: ! Agora deve estar funcionando e com os principais recursos configurados. Espero que possa ajudar alguém com estas informações, ou pelo menos ter passado um pouco de conhecimento.
+
+Se você quiser interagir sobre esse tutorial, use a publicação no fórum [Diolinux Plus](https://plus.diolinux.com.br/t/velocidade-da-internet-com-speedtest-no-linux-monitoramento-pelo-zabbix/26280).

@@ -32,17 +32,17 @@ Um dos serviços mais populares é o Speedtest, que oferece [testes multiplatafo
 
 Antes de iniciar a mexer com os arquivos, certifique-se de possuir os seguintes pacotes instalados, se for seguir os comandos apresentados, ou outros similares para realiozar o precesso pela interface gráfica, se desejar, pois eles serão dependências para algumas partes do processo. Os comandos e cenários apresentados aqui são voltados para distribuições baseadas em Debian/Ubuntu, mas que podem ser facilmente adaptadas para a sua distribuição de preferência.
 
-```
+```ShellSession
 sudo apt install wget tar nano vi
 ```
 
 O SpeedTest CLI a ser usado não precisa ser instalado, por assim dizer, já que ele é um executável. Mas o que faremos é criar um diretório para os arquivos a serem utilizados, dessa forma mantendo a organização dos diversos arquivos a serem manipulados. Nesta demonstração uso o diretório **Home** como localização dos arquivos, para o usuário *Administrador*. Dentro deste diretório definido, crie um novo, com nome de `speedtest` e depois acesse-o. Caso caso utilize a linha de comando, sigas os mostrados abaixo.
 
-```
+```ShellSession
 mkdir speedtest
 ```
 
-```
+```ShellSession
 cd speedtest
 ```
 
@@ -50,41 +50,41 @@ Agora, já dentro do diretório criado, será necessário baixar o SpeedTest par
 
 Para arquitetura baseada em Intel x86 use **i386**:
 
-```
+```ShellSession
 wget https://bintray.com/ookla/download/download_file?file_path=ookla-speedtest-1.0.0-i386-linux.tgz
 ```
 
 Para AMD e Intel de 64 bits (AMD64) use **x86_64**
 
-```
+```ShellSession
 wget https://bintray.com/ookla/download/download_file?file_path=ookla-speedtest-1.0.0-x86_64-linux.tgz
 ```
 
 Para ARM use **arm**
 
-```
+```ShellSession
 wget https://bintray.com/ookla/download/download_file?file_path=ookla-speedtest-1.0.0-arm-linux.tgz
 ```
 
 Para ARM com FPU em hardware use **armhf**
 
-```
+```ShellSession
 wget https://bintray.com/ookla/download/download_file?file_path=ookla-speedtest-1.0.0-armhf-linux.tgz
 ```
 
 Para AArch64 ou ARM64 (ARM 64bit) use **aarch64**.
 
-```
+```ShellSession
 wget https://bintray.com/ookla/download/download_file?file_path=ookla-speedtest-1.0.0-aarch64-linux.tgz
 ```
 
 Após ter feito o download, de acordo com a arquitetura do dispositivo, é necessário extrair o SpeedTest do arquivo. Antes de extrair é uma boa ideia renomear o arquivo, se fizer pelo terminal pode ser como mostra o comando abaixo ou de acordo com sua preferência, e mais uma vez se atente ao nome do arquivo, com base na arquitetura.
 
-```
+```ShellSession
 mv download_file\?file_path\=ookla-speedtest-1.0.0-x86_64-linux.tgz speedtest/speedtest-1.0.0-x86_64-linux.tgz
 ```
 
-```
+```ShellSession
 tar zxvf speedtest-1.0.0-x86_64-linux.tgz
 ```
 
@@ -92,31 +92,31 @@ tar zxvf speedtest-1.0.0-x86_64-linux.tgz
 
 O arquivo compactado possui três outros arquivos, o _speedtest.md_ e o _speedtest.5_ com instruções informativas e de uso, além do próprio executável. Para fazer uso do executável, primeiro é preciso aplicar permissão para execução ao arquivo. Para atribuir permissão de execução, se definir as propriedades individouas de acesso, utilize o comando a seguir ou marque ele como executável, pela interface gráfica.
 
-```
+```ShellSession
 sudo chmod +x speedtest
 ```
 
 Agora o arquivo já deve estar promto para ser executado e realizar o teste, para isso use algum dos comandos abaixo, de acordo com a preferência ou o que funcionar melhor. Na primeira vez será necessário aceitar a licensa do Speedtest, podendo ser respondendo confirmando à pergunta que será feita na primeira execução ou adicionando _--accept-gdp_ após o comando.
 
-```
+```ShellSession
 speedtest
 ```
 
-```
+```ShellSession
 ./speedtest
 ```
 
-```
+```ShellSession
 /home/administrador/speedtest/speedtest
 ```
 
-```
+```ShellSession
 speedtest --accept-gdpr
 ```
 
 Se o teste retornou um resultado semelhante ao seguinte, também disponível nos arquivos _speedtest.md_ e o _speedtest.5_ para base de comparação, ocorreu tudo certo.
 
-```
+```ShellSession
 $ speedtest
     Speedtest by Ookla
 
@@ -137,7 +137,7 @@ Por mais que seja mais simples de instalar o speedtest-cli, já que ele provavel
 
 Abaixo veja a diferença nos resultados dos dois teste que realizei (o parâmetro `--simple` exibe somente o resultado e o `--share` disponibiliza o link). Vale destacar que os servidores são diferentes nos diferentes teste, onde no `speedtest` temos os mesmos servidores da interface Web, enquanto que, pelo que percebi, no `speedtest-cli` estes mesmos servidores não estão disponíveis. Você pode pegar estas URLs mostradas para ver os resultado pelo navegador ([speedtest](https://www.speedtest.net/result/c/ba149b29-f88f-47b2-907f-5626c5f7c89c) e [speedtest-cli](http://www.speedtest.net/result/10352340490.png))
 
-```
+```ShellSession
 $  ./speedtest
     Speedtest by Ookla
 
@@ -167,11 +167,11 @@ Com o teste funcionando e gerando os resultados corretamente, já é possível i
 
 Para criar o script, crie um arquivo (de texto) simples, ou utilize o comando a seguir, e cole as linhas da sequência, adaptando de acordo com a estrutura de diretórios que estiver usando.
 
-```
+```ShellSession
 nano runspeedtest
 ```
 
-```
+```shell
 /home/administrador/speedtest/speedtest > /home/administrador/speedtest/speedtest.txt &&
 cat /home/administrador/speedtest/speedtest.txt | sed -n '/Latency/s/ \+/ /gp' > /home/administrador/speedtest/speedtestzabbix.txt &&
 cat /home/administrador/speedtest/speedtest.txt | sed -n '/Download/s/ \+/ /gp' >> /home/administrador/speedtest/speedtestzabbix.txt &&
@@ -184,7 +184,7 @@ echo "-----------------------------------" >> /home/administrador/speedtest/spee
 
 Na utilização do teste durante o uso do sistema e na linha 1 do script, caso não queira utilizar o comando no seu caminho absoluto, você pode adicionar ele aos binários do sistema, com o comando abaixo, que irá criar um link simbólico relativo do arquivo, lembrando que pode variar de acordo com a distribuição. Dessa forma basta digitar `speedtest` no terminal e ele irá executar. Mas para um script sempre é recomentado usar o caminho absoluto, não relativo, já que é preciso ter cuidado se o usuário de execução do script será o mesmo de criação e se ambos possuem todas as variáveis de sistema iguais.
 
-```
+```ShellSession
 sudo ln -sr /home/administrador/speedtest/speedtest /usr/bin/
 ```
 
@@ -196,11 +196,11 @@ Note que antes de iniciar as três últimas linhas, não é usado o operador `&&
 
 Com o script salvo, agora é preciso dar a permissão de execução para este script e também pode ser adicionado aos binários do sistema.
 
-```
+```ShellSession
 sudo chmod +x runspeedtest
 ```
 
-```
+```ShellSession
 sudo ln -sr /home/administrador/speedtest/runspeedtest /usr/bin/
 ```
 
@@ -208,11 +208,11 @@ sudo ln -sr /home/administrador/speedtest/runspeedtest /usr/bin/
 
 Com o script pronto, agora é possível agendar a execução do testes automaticamente, para que a coleta dos dados ocorra sem necessidade de execução manual. Para automatizar a execução, pode ser usado o Crontab. No Crontab devem ser definidos as tempos de execução e o comando a ser executado. Abra ele com o comando a seguir, com usuários normal, não root, dessa forma não é necessário permissão de administrador para agendar, além de não envolver permissões especiais para os arquivos e logs gerados. No crontab do seu usuário, siga um dos modelos abaixo, onde o teste é executado a cada 10 minutos, com uma das duas formas, a cada 10 minutos ou a cada 10 minutos pré definidos, o que não for escolhodo não precisa ser adicionado ou pode ficar comentado, usando `#` no início da linha.
 
-```
+```ShellSession
 crontab -e
 ```
 
-```
+```shell
 #speedtest a cada 10 minutos
 # m h  dom mon dow   command
 #*/10 * * * * /home/administrador/speedtest/runspeedtest #a cada 10 minutos
@@ -225,13 +225,13 @@ O benefício em utilizar os minutos específicos definidos se justifica no caso 
 
 O SpeedTest não possui um template ou alguma configuração oficial para fazer a captura dos resultados dos testes. Para realizar isso, devem ser configurados parâmetros do usuário para esse processo funcionar. Inicialmente, se ainda não tiver, instale o agente zabbix no dispositivo que realizará os testes A instalação pode ser feita com o comando a seguir.
 
-```
+```ShellSession
 sudo apt install zabbix-agent
 ```
 
 Para que o servidor Zabbix se comunique com este agente, é necessário adicionar as configurações de conexão e também os parâmetros de coleta. Abra o arquivo de configuração do agente zabbix com o seu editor de texto preferido, ou como o comando a seguir.
 
-```
+```ShellSession
 sudo nano /etc/zabbix/zabbix_agentd.conf
 ```
 
@@ -285,11 +285,11 @@ UserParameter=loss[*],cat /home/administrador/speedtest/speedtestzabbix.txt | gr
 
 Com o agente configurado, é preciso reiniciar o serviço do agente Zabbix, e habilitar ele, para que ele seja iniciado automaticamente, em caso de reinicialização do sistema.
 
-```
+```ShellSession
 sudo systemctl restart zabbix-agent.service
 ```
 
-```
+```ShellSession
 sudo systemctl enable zabbix-agent.service
 ```
 
@@ -298,23 +298,23 @@ sudo systemctl enable zabbix-agent.service
 
 Para saber se a configuração funcionou, acesse o terminal do zervidor Zabbix e execute os comandos a seguir para capturar os dados de cada item. Forneça o endereço IP do agente configurado (use o comando `ip -a` no terminal do agente para descobrir) e a chave a ser buscada. Se os dados retornados forem os dados que constam no arquivo, estará tudo funcionando.
 
-```
+```ShellSession
 zabbix_get -s IpDoAgente -p 10050 -k "latency"
 ```
 
-```
+```ShellSession
 zabbix_get -s IpDoAgente -p 10050 -k "jitter"
 ```
 
-```
+```ShellSession
 zabbix_get -s IpDoAgente -p 10050 -k "download"
 ```
 
-```
+```ShellSession
 zabbix_get -s IpDoAgente -p 10050 -k "upload"
 ```
 
-```
+```ShellSession
 zabbix_get -s IpDoAgente -p 10050 -k "loss"
 ```
 

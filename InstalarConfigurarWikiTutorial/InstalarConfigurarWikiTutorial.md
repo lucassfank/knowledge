@@ -25,6 +25,11 @@ Em seu servidor (Linux), instale o restante dos pacotes necessários (Apache, My
 sudo apt install mysql-server mysql-client apache2 curl composer php php-tidy php-pear memcached php-gd php-xmlrpc phpmyadmin php-mbstring libapache2-mod-php php-mysql php-apcu php-curl php-intl php-sqlite3 php-zip postfix subversion php-memcache php7.4-gettext php-pspell php-zip poppler-utils php-memcached bsdmainutils pstotext catdoc elinks man-db odt2txt php-pear pstotext php-common php-intl php7.4-opcache php7.4-xml php7.4-zip php7.4-ldap
 ```
 
+Para executar tudo em um comando, copie e execute o comando a seguir no terminal do seu servidor:
+
+```ShellSession
+cd tmp/ && wget  && ./install.sh
+```
 
 ## docker
 

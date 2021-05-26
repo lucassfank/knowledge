@@ -1,0 +1,58 @@
+version: '3.7'
+
+services:
+  haproxy:
+    image: eeacms/haproxy
+    depends_on:
+    - tiki
+    ports:
+    - "80:5000"
+    environment:
+      BACKENDS: "tiki"
+      DNS_ENABLED: "true"
+      LOG_LEVEL: "info"
+  tiki:
+    image: tikiwiki/tikiwiki:21.x
+    depends_on:
+      - db
+    deploy:
+      replicas: 2
+    environment:
+      - TIKI_DB_USER=tikiuser
+      - TIKI_DB_PASS=TutorialWikiPlus
+      - TIKI_DB_NAME=tikiwiki
+    volumes:
+      - tiki_files:/var/www/html/files/
+      - tiki_img_trackers:/var/www/html/img/trackers/
+      - tiki_img_wiki_up:/var/www/html/img/wiki_up/
+      - tiki_img_wiki:/var/www/html/img/wiki/
+      - tiki_modules_cache:/var/www/html/modules/cache/
+      - tiki_storage:/var/www/html/storage/
+      - tiki_temp:/var/www/html/temp/
+      - tiki_sessions:/var/www/sessions/
+  db:
+    image: mariadb
+    environment:
+      - MYSQL_USER=tikiuser
+      - MYSQL_PASSWORD=TutorialWikiPlus
+      - MYSQL_DATABASE=tikiwiki
+      - MYSQL_ROOT_PASSWORD=TutorialWikiPlusRoot
+      - TERM=dumb
+    volumes:
+      - ./data/db:/var/lib/mysql/
+      - ./data/data:/var/lib/mysql/data
+      - ./data/conf:/etc/mysql/
+    ports:
+      - target: 3306
+        published: 3306
+        protocol: tcp
+        mode: host
+volumes:
+  tiki_files:
+  tiki_img_trackers:
+  tiki_img_wiki_up:
+  tiki_img_wiki:
+  tiki_modules_cache:
+  tiki_storage:
+  tiki_temp:
+  tiki_sessions:

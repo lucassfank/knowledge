@@ -28,7 +28,7 @@ sudo apt install mysql-server mysql-client apache2 curl composer php php-tidy ph
 Para executar tudo em um comando, copie e execute o comando a seguir no terminal do seu servidor:
 
 ```ShellSession
-cd tmp/ && wget  && ./install.sh
+cd /tmp && wget https://raw.githubusercontent.com/lucassfank/knowledge/main/InstalarConfigurarWikiTutorial/extra/lamp/install.sh && chmod +x install.sh && ./install.sh
 ```
 
 ## docker

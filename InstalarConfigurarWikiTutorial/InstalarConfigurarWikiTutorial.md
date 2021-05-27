@@ -1,5 +1,9 @@
 # Como instalar e configurar sua própria Wiki - LAMP e Docker
 
+A Tiki Wiki CMS Groupware, ou simplesmente Tiki ou TikiWiki, é um [CMS](https://en.wikipedia.org/wiki/Content_management_system)+[Wiki](https://pt.wikipedia.org/wiki/Wiki)+[Groupware](https://pt.wikipedia.org/wiki/Software_colaborativo) open source para a criação de websites, com foco em Wikis (isso mesmo, tipo a [Wikipedia](https://www.wikipedia.org/) que está em todas as referencias até agora).  A Tiki é um projeto da Tiki Software Community Association, desenvolvido em PHP. 
+
+A documentação do projeto está em páginas hospedadas usando o próprio software. Você encontra o [Fórum](http://doc.tiki.org/Forum) Tiki para interagir com a comunidade, as páginas da [Wiki](http://doc.tiki.org/Wiki) e as [Structures](http://doc.tiki.org/Structure) com documentação para o usuário, e os [Trackers](http://doc.tiki.org/Trackers) para ver dados do [desenvolvimento](https://www.openhub.net/p/tikiwiki/commits/summary).
+
 ## LAMP
 
 Esta sessão apresenta os passos de installing do da TikiWiki e seus requisitos em uma instalação "padrão" de um servidor web LAMP, em um Ubuntu Server, usando Apache2, MySQL5 e PHP5/PHP7. Estes passos são baseados na [documentação oficial da Tiki](https://doc.tiki.org/Ubuntu-Install) e [neste tutorial do LinuxHelp](https://www.linuxhelp.com/how-to-install-tiki-wiki-cms-on-ubuntu19-04), em conjunto de várias horas experimentando combinações de configurações e passos diferentes.
@@ -29,7 +33,7 @@ sudo apt install wget nano vim tar gzip xzip zip unzip rar unrar
 Em seu servidor (Linux), instale o restante dos pacotes necessários (Apache, Mysql, PHP) para o funcionamento da Wiki:
 
 ```ShellSession
-sudo apt install mysql-server mysql-client apache2 curl composer php php-tidy php-pear memcached php-gd php-xmlrpc phpmyadmin php-mbstring libapache2-mod-php php-mysql php-apcu php-curl php-intl php-sqlite3 php-zip postfix subversion php-memcache php7.4-gettext php-pspell php-zip poppler-utils php-memcached bsdmainutils pstotext catdoc elinks man-db odt2txt php-pear pstotext php-common php-intl php7.4-opcache php7.4-xml php7.4-zip php7.4-ldap
+sudo apt install mariadb-server mariadb-client apache2 curl composer php php-tidy php-pear memcached php-gd php-xmlrpc php-mbstring libapache2-mod-php php-mysql php-apcu php-curl php-intl php-sqlite3 php-zip postfix subversion php-memcache php7.4-gettext php-pspell php-zip poppler-utils php-memcached bsdmainutils pstotext catdoc elinks man-db odt2txt php-pear pstotext php-common php-intl php7.4-opcache php7.4-xml php7.4-zip php7.4-ldap
 ```
 ### Crie o banco de dados para a aplicação
 
